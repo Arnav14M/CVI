@@ -2,6 +2,7 @@
 
 PS1:
   Run with command python PS1.py
+  Name required video file as video.mp4
   Press 'q' to quit
 
 PS2:
