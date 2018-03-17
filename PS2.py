@@ -57,17 +57,11 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #gray = cv2.GaussianBlur(gray, (5, 5), 0)
 edged = cv2.Canny(gray, 75, 200)
  
-# show the original image and the edge detected image
-#cv2.imshow("Image", image)
-#cv2.imshow("Edged", edged)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
-
 # find the contours in the edged image, keeping only the
 # largest ones, and initialize the screen contour
 cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 cnts = cnts[0] if imutils.is_cv2() else cnts[1]
-cnts = sorted(cnts, key = cv2.contourArea, reverse = True)[:5]
+cnts = sorted(cnts, key = cv2.contourArea, reverse = True)[:5] #uses the largest area contour
  
 # loop over the contours
 for c in cnts:
@@ -81,14 +75,6 @@ for c in cnts:
 		screenCnt = approx
 		break
  
-# show the contour (outline) of the piece of paper
-#print("STEP 2: Find contours of paper")
-#cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
-#cv2.imshow("Outline", image)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()
-
-
 # apply the four point transform to obtain a top-down
 # view of the original image
 warped = coordchange(orig, screenCnt.reshape(4, 2) * ratio)
