@@ -41,7 +41,7 @@ while True:
 		if(y>50) and cv2.contourArea(c)>100:
 			cv2.drawContours(frame,[c],-1,(255,0,255),-1)
 	cv2.imshow("hey",frame)
-    	if cv2.waitKey(0) & 0xFF==ord('q'):
+    	if cv2.waitKey(1) & 0xFF==ord('q'):
         	break
 	#cv2.waitKey(0)
 cv2.destroyAllWindows()
