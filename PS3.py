@@ -1,5 +1,3 @@
-#What is term_crit
-
 #Import necessary libraries
 import numpy as np
 import cv2
