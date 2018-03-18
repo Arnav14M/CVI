@@ -6,7 +6,7 @@ PS1:
   Press 'q' to quit
 
 PS2: 
-  Run with command python PS2.py -i <filename>
+  Run with command python PS2.py -i (filename)
 
 
 PS3:
