@@ -9,12 +9,12 @@ import imutils
 #orders the input corner points 
 def order_points(pts):
 	rect = np.zeros((4, 2), dtype = "float32")
- 	
+ 	#topleft has the least x+y, bottom right has the maximum x+y
 	s = pts.sum(axis = 1)
 	rect[0] = pts[np.argmin(s)]
 	rect[2] = pts[np.argmax(s)]
  
-
+	#top right has minimum |x-y| bottom left has max |x-y|
 	diff = np.diff(pts, axis = 1)
 	rect[1] = pts[np.argmin(diff)]
 	rect[3] = pts[np.argmax(diff)]
@@ -31,9 +31,9 @@ def coordchange(image,pts):
 	hA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
 	hB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
 	maxH = max(int(hA), int(hB))
-
+	#get transformation matrix
 	dst=np.array([[0,0],[maxW-1,0],[maxW-1,maxH-1],[0,maxH-1]],dtype = "float32")
-
+	#get transformation
 	M = cv2.getPerspectiveTransform(rect, dst)
 	warped = cv2.warpPerspective(image, M, (maxW, maxH)) 
 	return warped
