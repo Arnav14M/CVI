@@ -5,8 +5,8 @@ PS1:
   Name required video file as video.mp4
   Press 'q' to quit
 
-PS2:
-  
+PS2: 
+  Run with command python PS2.py -i <filename>
 
 
 PS3:
